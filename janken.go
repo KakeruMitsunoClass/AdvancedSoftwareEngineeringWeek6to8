@@ -78,27 +78,41 @@ func judge_win_lose(user int, cpu int) int {
 	}
 }
 
-func janken_loop() {
+
+func janken_loop() (int, int, int) {
 	var user int
 	var cpu int
 	var userwin int
 	var cpuwin int
 	var draw int
+	var suser string
+	var result int
 
-	user = 0 //strで受け取ってintに直す関数
-	cpu = 1  //いったん決め打ち
 	for {
+		fmt.Scanf("%s", &suser)
+		if suser == "exit" {
+			break
+		}
+		user = get_user(suser) //strで受け取ってintに直す関数
+		cpu = get_cpu()        //ランダム生成関数
+
 		tmp = judge_win_lose(user, cpu)
 		switch tmp {
 		case 0:
 			userwin += 1
+			fmt.Println("User win")
 		case 1:
 			cpuwin += 1
+			fmt.Println("Cpu win")
 		case 2:
 			draw += 1
+			fmt.Println("Draw")
 		}
-		fmt.Printf("User win:%d lose:%d draw:%d\n", userwin, cpuwin, draw)
 	}
+
+	result = judge(userwin, cpuwin, draw)
+
+	return userwin, cpuwin, draw
 }
 
 func get_user(input string) int {
