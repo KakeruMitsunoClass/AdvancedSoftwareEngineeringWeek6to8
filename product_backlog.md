@@ -28,3 +28,13 @@ janken_loop()にreturn 追加
 最終評価をする関数
 judge_win_lose関数最後エラーを返す
 testにパッケージ追加
+
+# Sprint 2
+## Sprint Backlog
+1. ユーザーの入力を受けて，数字に変換して返す関数
+2. cpuの手を生成する関数
+3. janken_loopの修正: ユーザーの手決定関数の追加，cpuの手を決める関数の追加, sprint1で決まった修正
+4. judge_win_lose(): sprint1で決まった修正
+5. 最終評価をする関数の作成
+6. test: sprint1で決まった修正
+## メモ

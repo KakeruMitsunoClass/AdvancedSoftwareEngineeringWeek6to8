@@ -46,8 +46,8 @@ func TestJanken04(t *testing.T) {
 
 func TestJanken05(t *testing.T) {
 	expected := 1
-	input := 2
-	input := 1
+	input1 := 0
+	input2 := 1
 	result := judge_win_lose(input1, input2)
 	if expected != result {
 		t.Errorf("Test05 fail expected: %d, result: %d\n", expected, result)
