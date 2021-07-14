@@ -1,3 +1,4 @@
+package janken
 
 func TestJanken01(t *testing.T) {
 	expected := 0
@@ -88,4 +89,3 @@ func TestJanken08(t *testing.T) {
 		t.Errorf("Test08 fail expected: %d, result: %d\n", expected, result)
 	}
 }
-
