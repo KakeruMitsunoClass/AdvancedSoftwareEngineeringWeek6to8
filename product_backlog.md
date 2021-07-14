@@ -21,3 +21,10 @@
 r: グー (0)
 s: チョキ (1)
 p: パー (2)
+## sprint review
+ユーザーの入力を受ける関数
+cpuのランダム関数
+janken_loop()にreturn 追加
+最終評価をする関数
+judge_win_lose関数最後エラーを返す
+testにパッケージ追加
