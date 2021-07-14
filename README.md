@@ -9,7 +9,7 @@
 - 開発が終わったら
   - `git add [開発したファイル]`
   - `git commit -m 'コメント'`
-  - `gti push origin main` (プルリクエスト)
+  - `gti push origin [ブランチ名]` (プルリクエスト)
 - GitHub上で誰かがmainブランチにマージする(プルリクエストを承認する)
 - スプリントが終わった後(ほかの修正を自分のローカルに取り込む)
   - `git checkoout main`
