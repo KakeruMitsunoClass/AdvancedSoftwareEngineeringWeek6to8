@@ -1,4 +1,4 @@
-package janken
+package main
 
 import "testing"
 
@@ -45,7 +45,7 @@ func TestJanken04(t *testing.T) {
 }
 
 func TestJanken05(t *testing.T) {
-	expected := 1
+	expected := 0
 	input1 := 0
 	input2 := 1
 	result := judge_win_lose(input1, input2)
@@ -139,7 +139,7 @@ func TestJanken14(t *testing.T) {
 	expected0 := 0
 	expected1 := 1
 	expected2 := 2
-	result := get_cpu()
+	result := random_cpu()
 	if !((expected0 == result) || (expected1 == result) || (expected2 == result)) {
 		t.Errorf("Test14 fail expected: %d,%d,%d result: %d\n", expected0, expected1, expected2, result)
 	}
@@ -147,9 +147,9 @@ func TestJanken14(t *testing.T) {
 
 func TestJanken15(t *testing.T) {
 	expected := 0
-	input1 = 5
-	input2 = 3
-	input3 = 2
+	input1 := 5
+	input2 := 3
+	input3 := 2
 	result := judge(input1, input2, input3)
 	if expected != result {
 		t.Errorf("Test15 fail expected: %d, result: %d\n", expected, result)
@@ -158,9 +158,9 @@ func TestJanken15(t *testing.T) {
 
 func TestJanken16(t *testing.T) {
 	expected := 1
-	input1 = 5
-	input2 = 7
-	input3 = 2
+	input1 := 5
+	input2 := 7
+	input3 := 2
 	result := judge(input1, input2, input3)
 	if expected != result {
 		t.Errorf("Test16 fail expected: %d, result: %d\n", expected, result)
@@ -169,9 +169,9 @@ func TestJanken16(t *testing.T) {
 
 func TestJanken17(t *testing.T) {
 	expected := 2
-	input1 = 5
-	input2 = 5
-	input3 = 2
+	input1 := 5
+	input2 := 5
+	input3 := 2
 	result := judge(input1, input2, input3)
 	if expected != result {
 		t.Errorf("Test17 fail expected: %d, result: %d\n", expected, result)
