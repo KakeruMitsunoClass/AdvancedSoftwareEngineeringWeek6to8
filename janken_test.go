@@ -139,7 +139,7 @@ func TestJanken14(t *testing.T) {
 	expected0 := 0
 	expected1 := 1
 	expected2 := 2
-	result := random_cpu()
+	result := random_cpu(3)
 	if !((expected0 == result) || (expected1 == result) || (expected2 == result)) {
 		t.Errorf("Test14 fail expected: %d,%d,%d result: %d\n", expected0, expected1, expected2, result)
 	}
@@ -175,5 +175,72 @@ func TestJanken17(t *testing.T) {
 	result := judge(input1, input2, input3)
 	if expected != result {
 		t.Errorf("Test17 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken18(t *testing.T) {
+	expected0 := 0
+	expected1 := 1
+	expected2 := 2
+	expected3 := 3
+	result := random_cpu(4)
+	if !((expected0 == result) || (expected1 == result) || (expected2 == result) || (expected3 == result)) {
+		t.Errorf("Test18 fail expected: %d,%d,%d result: %d\n", expected0, expected1, expected2, result)
+	}
+}
+
+func TestJanken19(t *testing.T) {
+	input1 := 0
+	input2 := 1
+	expected := 1
+	result := judge_win_lose_achimuitehoi(input1, input2) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test19 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken20(t *testing.T) {
+	input1 := 0
+	input2 := 0
+	expected := 0
+	result := judge_win_lose_achimuitehoi(input1, input2) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test20 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken21(t *testing.T) {
+	input := "u"
+	expected := 0
+	result := get_user_achimuitehoi(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test21 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken22(t *testing.T) {
+	input := "r"
+	expected := 2
+	result := get_user_achimuitehoi(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test22 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken23(t *testing.T) {
+	input := "l"
+	expected := 3
+	result := get_user_achimuitehoi(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test23 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken24(t *testing.T) {
+	input := "d"
+	expected := 1
+	result := get_user_achimuitehoi(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test20 fail expected: %d, result: %d\n", expected, result)
 	}
 }
