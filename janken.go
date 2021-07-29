@@ -15,38 +15,54 @@ func print_hand(cpu int, user int) {
 	// xx vs xx
 	var scpu string
 	var suser string
-	switch cpu {
-	case 0:
-		scpu = "rock"
-	case 1:
-		scpu = "scissors"
-	case 2:
-		scpu = "paper"
-	}
-	switch user {
-	case 0:
-		suser = "rock"
-	case 1:
-		suser = "scissors"
-	case 2:
-		suser = "paper"
-	}
+	scpu = trans_hand(cpu)
+	suser = trans_hand(user)
 	fmt.Println("User", suser, "VS", "Cpu", scpu)
 }
 
-func print_cpu_achimuitehoi(input int) {
+func trans_hand(input int) string {
+	var str string
+
 	switch input {
 	case 0:
-		fmt.Println("The CPU's direction is up")
+		str = "rock"
 	case 1:
-		fmt.Println("The CPU's direction is down")
+		str = "scissors"
 	case 2:
-		fmt.Println("The CPU's direction is right")
-	case 3:
-		fmt.Println("The CPU's direction is left")
+		str = "paper"
 	default:
 		// nothing
 	}
+
+	return str
+}
+
+func trans_direction(input int) string {
+	var str string
+
+	switch input {
+	case 0:
+		str = "up"
+	case 1:
+		str = "down"
+	case 2:
+		str = "right"
+	case 3:
+		str = "left"
+	default:
+		// nothing
+	}
+	return str
+}
+
+func print_achimuitehoi(cpu int, user int) {
+	var suser string
+	var scpu string
+
+	scpu = trans_direction(cpu)
+	suser = trans_direction(user)
+
+	fmt.Println("User", suser, "VS", "Cpu", scpu)
 }
 
 func judge_win_lose(user int, cpu int) int {
@@ -96,9 +112,10 @@ func janken_loop() (int, int, int) {
 
 	for {
 		count += 1
-		fmt.Println("round ", count)
-		fmt.Println("Type \"exit\" if you want to quit.")
-		fmt.Println("Please enter the user's hand")
+		fmt.Println("Round ", count)
+		fmt.Println("Type \"q\" if you want to quit.")
+		fmt.Println("---------------Janken-----------------")
+		fmt.Println("\"r\"ock, \"s\"cissor, \"p\"aper")
 
 		//じゃんけん
 		fmt.Scanf("%s", &suser)
@@ -114,17 +131,17 @@ func janken_loop() (int, int, int) {
 		janken_judge := judge_win_lose(user, cpu)
 		switch janken_judge {
 		case 0:
-			fmt.Println("User janken win")
+			fmt.Println("Janken: You win")
 		case 1:
-			fmt.Println("Cpu janken win")
+			fmt.Println("Janken: You lose")
 		case 2:
-			fmt.Println("janken: Draw")
+			fmt.Println("Janken: Draw")
 			fmt.Println("----------------------------------------------")
 			continue
 		}
 
 		//あっち向いてホイの部分
-		fmt.Println("Please enter the user's direction ")
+		fmt.Println("-------------Achimuitehoi-------------")
 		fmt.Println("\"r\"ight, \"l\"eft, \"d\"own \"u\"p")
 
 		fmt.Scanf("%s", &suser)
@@ -133,20 +150,22 @@ func janken_loop() (int, int, int) {
 			break
 		}
 		cpu_achi = random_cpu(4) //ランダム生成関数
-		print_cpu_achimuitehoi(cpu_achi)
-		// あっち向いてホイ: 勝ち負け判定
-		tmp := judge_win_lose(user, cpu)                             //ジャンケン勝ち負け
-		tmp_achi := judge_win_lose_achimuitehoi(user_achi, cpu_achi) //同じ方向:0,違う方向:1
-		if tmp == 0 && tmp_achi == 0 {
+		print_achimuitehoi(cpu_achi, user_achi)
+		// あっち向いてホイ: 勝ち負け判定                    //ジャンケン勝ち負け
+		achi_judge := judge_win_lose_achimuitehoi(user_achi, cpu_achi) //同じ方向:0,違う方向:1
+		if janken_judge == 0 && achi_judge == 0 {
 			userwin += 1
-			fmt.Println("User Achimuitehoi win")
-		} else if tmp == 1 && tmp_achi == 0 {
+			fmt.Println("Achimuitehoi: You win")
+		} else if janken_judge == 1 && achi_judge == 0 {
 			cpuwin += 1
-			fmt.Println("Cpu Achimuitehoi win")
+			fmt.Println("Achimuitehoi: You lose")
 		} else {
 			draw += 1
 			fmt.Println("Draw")
 		}
+
+		fmt.Println("----------------------------------------------")
+		fmt.Printf("win:%d, lose:%d, draw:%d\n", userwin, cpuwin, draw)
 		fmt.Println("----------------------------------------------")
 	}
 
@@ -166,7 +185,7 @@ func get_user(input string) int {
 		input_int = 1
 	case "p":
 		input_int = 2
-	case "exit":
+	case "q":
 		input_int = -1
 	default:
 		fmt.Println("input correct hand")
@@ -189,15 +208,13 @@ func get_user_achimuitehoi(input string) int {
 		input_int = 2
 	case "l":
 		input_int = 3
-	case "exit":
+	case "q":
 		input_int = -1
 	default:
 		fmt.Println("input correct direction")
 		fmt.Scanf("%s", &suser)
 		input_int = get_user_achimuitehoi(suser)
-
 	}
-
 	return input_int
 }
 
@@ -222,8 +239,5 @@ func judge(userwin int, cpuwin int, draw int) int {
 }
 
 func main() {
-	c := random_cpu(3)
-	fmt.Println(c)
-	fmt.Println("user input: rock = r, scissors = s, paper = p")
 	janken_loop()
 }
