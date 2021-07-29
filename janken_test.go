@@ -241,6 +241,69 @@ func TestJanken24(t *testing.T) {
 	expected := 1
 	result := get_user_achimuitehoi(input) //cpu int, user int
 	if expected != result {
-		t.Errorf("Test20 fail expected: %d, result: %d\n", expected, result)
+		t.Errorf("Test24 fail expected: %d, result: %d\n", expected, result)
+	}
+}
+
+func TestJanken25(t *testing.T) {
+	input := 0
+	expected := "rock"
+	result := trans_hand(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test25 fail expected: %s, result: %s\n", expected, result)
+	}
+}
+
+func TestJanken26(t *testing.T) {
+	input := 1
+	expected := "scissors"
+	result := trans_hand(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test26 fail expected: %s, result: %s\n", expected, result)
+	}
+}
+
+func TestJanken27(t *testing.T) {
+	input := 2
+	expected := "paper"
+	result := trans_hand(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test27 fail expected: %s, result: %s\n", expected, result)
+	}
+}
+
+func TestJanken28(t *testing.T) {
+	input := 0
+	expected := "up"
+	result := trans_direction(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test28 fail expected: %s, result: %s\n", expected, result)
+	}
+}
+
+func TestJanken29(t *testing.T) {
+	input := 1
+	expected := "down"
+	result := trans_direction(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test29 fail expected: %s, result: %s\n", expected, result)
+	}
+}
+
+func TestJanken30(t *testing.T) {
+	input := 2
+	expected := "right"
+	result := trans_direction(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test30 fail expected: %s, result: %s\n", expected, result)
+	}
+}
+
+func TestJanken31(t *testing.T) {
+	input := 3
+	expected := "left"
+	result := trans_direction(input) //cpu int, user int
+	if expected != result {
+		t.Errorf("Test31 fail expected: %s, result: %s\n", expected, result)
 	}
 }
