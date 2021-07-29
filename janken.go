@@ -11,14 +11,39 @@ func random_cpu(max_num int) int {
 	return rand.Intn(max_num)
 }
 
-func print_cpu(input int) {
+func print_hand(cpu int, user int) {
+	// xx vs xx
+	var scpu string
+	var suser string
+	switch cpu {
+	case 0:
+		scpu = "rock"
+	case 1:
+		scpu = "scissors"
+	case 2:
+		scpu = "paper"
+	}
+	switch user {
+	case 0:
+		suser = "rock"
+	case 1:
+		suser = "scissors"
+	case 2:
+		suser = "paper"
+	}
+	fmt.Println("User", suser, "VS", "Cpu", scpu)
+}
+
+func print_cpu_achimuitehoi(input int) {
 	switch input {
 	case 0:
-		fmt.Println("The CPU's rock-paper-scissors hand is r")
+		fmt.Println("The CPU's direction is up")
 	case 1:
-		fmt.Println("The CPU's rock-paper-scissors hand is s")
+		fmt.Println("The CPU's direction is down")
 	case 2:
-		fmt.Println("The CPU's rock-paper-scissors hand is p")
+		fmt.Println("The CPU's direction is right")
+	case 3:
+		fmt.Println("The CPU's direction is left")
 	default:
 		// nothing
 	}
@@ -84,45 +109,44 @@ func janken_loop() (int, int, int) {
 		}
 
 		cpu = random_cpu(3) //ランダム生成関数
-		print_cpu(cpu)
+		print_hand(cpu, user)
+
+		janken_judge := judge_win_lose(user, cpu)
+		switch janken_judge {
+		case 0:
+			fmt.Println("User janken win")
+		case 1:
+			fmt.Println("Cpu janken win")
+		case 2:
+			fmt.Println("janken: Draw")
+			fmt.Println("----------------------------------------------")
+			continue
+		}
 
 		//あっち向いてホイの部分
-		fmt.Println("Please enter the user's direction")
+		fmt.Println("Please enter the user's direction ")
+		fmt.Println("\"r\"ight, \"l\"eft, \"d\"own \"u\"p")
 
-		// fmt.Scanf("%s", &suser)
-
+		fmt.Scanf("%s", &suser)
 		user_achi = get_user_achimuitehoi(suser) //strで受け取ってintに直す関数
 		if user_achi == -1 {
 			break
 		}
 		cpu_achi = random_cpu(4) //ランダム生成関数
-		print_cpu(cpu_achi)
-		// TODO: 勝ち負け判定
+		print_cpu_achimuitehoi(cpu_achi)
+		// あっち向いてホイ: 勝ち負け判定
 		tmp := judge_win_lose(user, cpu)                             //ジャンケン勝ち負け
 		tmp_achi := judge_win_lose_achimuitehoi(user_achi, cpu_achi) //同じ方向:0,違う方向:1
 		if tmp == 0 && tmp_achi == 0 {
 			userwin += 1
-			fmt.Println("User win")
+			fmt.Println("User Achimuitehoi win")
 		} else if tmp == 1 && tmp_achi == 0 {
 			cpuwin += 1
-			fmt.Println("Cpu win")
+			fmt.Println("Cpu Achimuitehoi win")
 		} else {
 			draw += 1
 			fmt.Println("Draw")
 		}
-		//	switch tmp {
-		//	case 0:
-		//		userwin += 1
-		//		fmt.Println("User win")
-		//	case 1:
-		//		cpuwin += 1
-		//		fmt.Println("Cpu win")
-		//	case 2:
-		//		draw += 1
-		//		fmt.Println("Draw")
-		//	default:
-		// nothing
-		//	}
 		fmt.Println("----------------------------------------------")
 	}
 
@@ -149,24 +173,28 @@ func get_user(input string) int {
 		fmt.Scanf("%s", &suser)
 		input_int = get_user(suser)
 	}
-
 	return input_int
 }
 
 func get_user_achimuitehoi(input string) int {
 	var input_int int
+	var suser string
 
 	switch input {
 	case "u":
 		input_int = 0
-	case "b":
+	case "d":
 		input_int = 1
 	case "r":
 		input_int = 2
 	case "l":
-		input_int = 4
+		input_int = 3
+	case "exit":
+		input_int = -1
 	default:
 		fmt.Println("input correct direction")
+		fmt.Scanf("%s", &suser)
+		input_int = get_user_achimuitehoi(suser)
 
 	}
 
